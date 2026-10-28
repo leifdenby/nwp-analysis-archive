@@ -1,13 +1,14 @@
 """One update pass: append new cycles to archive A, refresh archive B."""
 
 import datetime
+import time
 from collections.abc import Mapping
 from dataclasses import dataclass
 
 import xarray as xr
 from loguru import logger
 
-from . import archive, schema, source
+from . import archive, schema, shutdown, source
 
 DATASET_IDS = schema.DATASET_IDS
 
@@ -129,6 +130,9 @@ def update_staging_archives(
         archive.check_archive_schema_version(url_a)
         present = archive.read_archive_times(url_a)
         for t in (t for t in available if t not in present):
+            if shutdown.check_stop_requested():
+                logger.info("Stop requested, leaving archive A as it is")
+                return report
             src_url = f"{src_root}/{source.build_prefix(t)}/{dataset_id}.zarr"
             try:
                 result = read_cycle_step(
@@ -147,8 +151,13 @@ def update_staging_archives(
                     report.incompatible += 1
                     continue
                 logger.info(f"Appending {t.isoformat()} to {url_a}")
+                started = time.monotonic()
                 archive.append_to_staging(result, url_a)
                 report.appended += 1
+                logger.info(
+                    f"Appended {t.isoformat()} to {url_a} in "
+                    f"{time.monotonic() - started:.0f} s"
+                )
             except Exception:
                 logger.exception(f"Failed on {src_url}, retrying next pass")
                 report.failed += 1
@@ -217,6 +226,9 @@ def update_final_archives(
         If an existing archive has another schema version.
     """
     for dataset_id in dataset_ids:
+        if shutdown.check_stop_requested():
+            logger.info("Stop requested, leaving archive B as it is")
+            return
         url_a = f"{a_root}/{dataset_id}.zarr"
         url_b = f"{b_root}/{dataset_id}.zarr"
         archive.check_archive_schema_version(url_a)

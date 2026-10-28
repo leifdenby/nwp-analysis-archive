@@ -22,7 +22,8 @@ import xarray as xr
 from . import source, storage
 
 TARGET_SCHEMA_VERSION = 1
-DATASET_IDS = ("pressure_levels", "height_levels", "single_levels")
+# the order they are archived in: smallest and most used first
+DATASET_IDS = ("single_levels", "height_levels", "pressure_levels")
 # the forecast length (time) differs between runs and does not matter
 IGNORED_DIMS = ("time",)
 

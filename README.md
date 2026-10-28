@@ -46,8 +46,8 @@ The archive comes in two forms, built from the same source:
 | Good for | appending cheaply; reading maps | point time series (e.g. verification, interpolation to stations) |
 | Updated | every poll (default 15 min) | once a day (default 00:30 UTC) |
 
-Datasets, as written by the zarr creator: `pressure_levels`, `height_levels`
-and `single_levels`. Each is archived to `{archive}/{dataset}.zarr`.
+Datasets, as written by the zarr creator, archived in this order:
+`single_levels`, `height_levels` and `pressure_levels`. Each is archived to `{archive}/{dataset}.zarr`.
 
 ## How it works
 
@@ -117,13 +117,16 @@ same: S3 URLs, no mount, no AWS profile.
 
 ```bash
 docker run -d --name nwp-analysis-archive --restart unless-stopped \
-  --memory 2500m --log-opt max-size=50m --log-opt max-file=5 \
+  --memory 2500m --stop-timeout 600 --log-opt max-size=50m --log-opt max-file=5 \
   -e NWP_ARCHIVE_SRC_URI=s3://harmonie-zarr/dini/control \
   -e NWP_ARCHIVE_ARCHIVE_A_URI=s3://harmonie-zarr-archive/dini/staging \
   -e NWP_ARCHIVE_ARCHIVE_B_URI=s3://harmonie-zarr-archive/dini/final \
   ghcr.io/leifdenby/nwp-analysis-archive:<tag>
 ```
 
+- `--stop-timeout 600`: on `docker stop` the archiver finishes the write it
+  is in the middle of and then exits; killing it during an append can leave
+  an archive with a time entry without data.
 - Use `--restart unless-stopped`: an archiver that is down for about a week
   loses data (see [retention](#why-the-archive-matters-retention)).
 - The role needs read access to the source bucket and read, write and delete
@@ -169,7 +172,7 @@ the ANNA inference container; the mapping is in
 | `--src-uri` | `NWP_ARCHIVE_SRC_URI` | (required) | forecast zarrs root, e.g. `s3://harmonie-zarr/dini/control` or a mounted path |
 | `--archive-a-uri` | `NWP_ARCHIVE_ARCHIVE_A_URI` | (required) | prefix of archive A |
 | `--archive-b-uri` | `NWP_ARCHIVE_ARCHIVE_B_URI` | (required) | prefix of archive B |
-| `--datasets` | `NWP_ARCHIVE_DATASETS` | `pressure_levels height_levels single_levels` | space-separated |
+| `--datasets` | `NWP_ARCHIVE_DATASETS` | `single_levels height_levels pressure_levels` | space-separated |
 | `--interval-hours` | `NWP_ARCHIVE_INTERVAL_HOURS` | `3` | hours between analysis times; must divide 24 |
 | `--steps` | `NWP_ARCHIVE_STEPS` | `a b` | archives to update in a single pass (without `--watch`) |
 | `--watch` | `NWP_ARCHIVE_WATCH` | `false` (`true` in the image) | keep running |

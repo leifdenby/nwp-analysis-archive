@@ -8,7 +8,14 @@ import pytest
 import xarray as xr
 from loguru import logger
 
-from nwp_analysis_archive import archive, blocks, migrations, schema, source
+from nwp_analysis_archive import (
+    archive,
+    blocks,
+    migrations,
+    schema,
+    shutdown,
+    source,
+)
 from nwp_analysis_archive.migrate import migrate_archive
 from nwp_analysis_archive.reingest import reingest_cycles
 from nwp_analysis_archive.scan import (
@@ -238,3 +245,33 @@ def test_reingest_overwrites_and_appends_then_rebuilds_b(
         "0.8.1.dev1+gtest",
         "v-test",
     ]
+
+
+def test_datasets_are_archived_smallest_first() -> None:
+    """Single levels first, then height levels, then pressure levels."""
+    assert schema.DATASET_IDS == (
+        "single_levels",
+        "height_levels",
+        "pressure_levels",
+    )
+
+
+def test_stop_request_ends_the_pass_between_cycles(tmp_path: Path) -> None:
+    """After a stop request, no further cycle is appended."""
+    src_root = tmp_path / "src"
+    for t in DAYS[:3]:
+        write_forecast(src_root, t)
+    schemas = build_test_schemas(src_root, DAYS[0])
+    shutdown.request_stop()
+    try:
+        report = update_staging_archives(
+            str(src_root), f"{tmp_path}/a", (DATASET,), schemas=schemas
+        )
+    finally:
+        shutdown.reset_stop()
+    assert report.appended == 0
+    assert not (tmp_path / "a").exists()
+    report = update_staging_archives(
+        str(src_root), f"{tmp_path}/a", (DATASET,), schemas=schemas
+    )
+    assert report.appended == 3
