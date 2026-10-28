@@ -1,0 +1,50 @@
+[project]
+name = "nwp-analysis-archive"
+version = "0.1.0"
+description = "Archive the analysis time step of NWP forecast zarrs into a separate bucket"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "dask",
+    "fsspec",
+    "loguru",
+    "numpy",
+    "pandas",
+    "s3fs",
+    "xarray",
+    "zarr>=3",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit",
+    "pytest",
+    "ruff",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["nwp_analysis_archive"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 80
+target-version = "py311"
+
+[tool.ruff.lint]
+# ANN: type annotations on all arguments and return values
+# D:   numpy-style docstrings on all functions and methods
+select = ["E", "F", "I", "UP", "B", "ANN", "D"]
+# the module docstring is required, __init__ and magic methods are not
+ignore = ["D105", "D107"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/__init__.py" = ["D104"]

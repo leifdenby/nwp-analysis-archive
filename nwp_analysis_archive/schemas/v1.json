@@ -1,0 +1,471 @@
+{
+  "height_levels": {
+    "coords": {
+      "altitude": {
+        "dims": [
+          "altitude"
+        ],
+        "dtype": "int64"
+      },
+      "lat": {
+        "dims": [
+          "y",
+          "x"
+        ],
+        "dtype": "float64"
+      },
+      "lon": {
+        "dims": [
+          "y",
+          "x"
+        ],
+        "dtype": "float64"
+      },
+      "time": {
+        "dims": [
+          "time"
+        ],
+        "dtype": "datetime64[ns]"
+      },
+      "x": {
+        "dims": [
+          "x"
+        ],
+        "dtype": "float64"
+      },
+      "y": {
+        "dims": [
+          "y"
+        ],
+        "dtype": "float64"
+      }
+    },
+    "data_vars": {
+      "dini_projection": {
+        "dims": [],
+        "dtype": "float64",
+        "standard_name": null,
+        "units": null
+      },
+      "r": {
+        "dims": [
+          "time",
+          "altitude",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "relative_humidity",
+        "units": "%"
+      },
+      "t": {
+        "dims": [
+          "time",
+          "altitude",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "air_temperature",
+        "units": "K"
+      },
+      "u": {
+        "dims": [
+          "time",
+          "altitude",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "eastward_wind",
+        "units": "m s**-1"
+      },
+      "v": {
+        "dims": [
+          "time",
+          "altitude",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "northward_wind",
+        "units": "m s**-1"
+      }
+    },
+    "projections": {
+      "dini_projection": "PROJCRS[\"DMI HARMONIE DINI lambert projection\",    BASEGEOGCRS[\"DMI HARMONIE DINI lambert CRS\",        DATUM[\"DMI HARMONIE DINI lambert datum\",            ELLIPSOID[\"Sphere\", 6371229, 0,                LENGTHUNIT[\"metre\", 1,                    ID[\"EPSG\", 9001]                ]            ]        ],        PRIMEM[\"Greenwich\", 0,            ANGLEUNIT[\"degree\", 0.0174532925199433,                ID[\"EPSG\", 9122]            ]        ]    ],    CONVERSION[\"Lambert Conic Conformal (2SP)\",        METHOD[\"Lambert Conic Conformal (2SP)\",            ID[\"EPSG\", 9802]        ],        PARAMETER[\"Latitude of false origin\", 55.5,            ANGLEUNIT[\"degree\", 0.0174532925199433,                ID[\"EPSG\", 8821]            ]        ],        PARAMETER[\"Longitude of false origin\", -8,            ANGLEUNIT[\"degree\", 0.0174532925199433,                ID[\"EPSG\", 8822]            ]        ],        PARAMETER[\"Latitude of 1st standard parallel\", 55.5,            ANGLEUNIT[\"degree\", 0.0174532925199433,                ID[\"EPSG\", 8823]            ]        ],        PARAMETER[\"Latitude of 2nd standard parallel\", 55.5,            ANGLEUNIT[\"degree\", 0.0174532925199433,                ID[\"EPSG\", 8824]            ]        ],        PARAMETER[\"Easting at false origin\", 0,            LENGTHUNIT[\"metre\", 1],            ID[\"EPSG\", 8826]        ],        PARAMETER[\"Northing at false origin\", 0,            LENGTHUNIT[\"metre\", 1],            ID[\"EPSG\", 8827]        ]    ],    CS[Cartesian, 2],    AXIS[\"(E)\", east,        ORDER[1],        LENGTHUNIT[\"Metre\", 1]    ],    AXIS[\"(N)\", north,        ORDER[2],        LENGTHUNIT[\"Metre\", 1]    ],    USAGE[        AREA[\"Denmark and surrounding regions\"],        BBOX[37, -43, 70, 40],        SCOPE[\"DINI Harmonie forecast projection\"]    ]]"
+    },
+    "sizes": {
+      "altitude": 4,
+      "x": 1906,
+      "y": 1606
+    }
+  },
+  "pressure_levels": {
+    "coords": {
+      "lat": {
+        "dims": [
+          "y",
+          "x"
+        ],
+        "dtype": "float64"
+      },
+      "lon": {
+        "dims": [
+          "y",
+          "x"
+        ],
+        "dtype": "float64"
+      },
+      "pressure": {
+        "dims": [
+          "pressure"
+        ],
+        "dtype": "int64"
+      },
+      "time": {
+        "dims": [
+          "time"
+        ],
+        "dtype": "datetime64[ns]"
+      },
+      "x": {
+        "dims": [
+          "x"
+        ],
+        "dtype": "float64"
+      },
+      "y": {
+        "dims": [
+          "y"
+        ],
+        "dtype": "float64"
+      }
+    },
+    "data_vars": {
+      "dini_projection": {
+        "dims": [],
+        "dtype": "float64",
+        "standard_name": null,
+        "units": null
+      },
+      "r": {
+        "dims": [
+          "time",
+          "pressure",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "relative_humidity",
+        "units": "%"
+      },
+      "t": {
+        "dims": [
+          "time",
+          "pressure",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "air_temperature",
+        "units": "K"
+      },
+      "tw": {
+        "dims": [
+          "time",
+          "pressure",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": null,
+        "units": "m s**-1"
+      },
+      "u": {
+        "dims": [
+          "time",
+          "pressure",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "eastward_wind",
+        "units": "m s**-1"
+      },
+      "v": {
+        "dims": [
+          "time",
+          "pressure",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "northward_wind",
+        "units": "m s**-1"
+      },
+      "z": {
+        "dims": [
+          "time",
+          "pressure",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "geopotential",
+        "units": "m**2 s**-2"
+      }
+    },
+    "projections": {
+      "dini_projection": "PROJCRS[\"DMI HARMONIE DINI lambert projection\",    BASEGEOGCRS[\"DMI HARMONIE DINI lambert CRS\",        DATUM[\"DMI HARMONIE DINI lambert datum\",            ELLIPSOID[\"Sphere\", 6371229, 0,                LENGTHUNIT[\"metre\", 1,                    ID[\"EPSG\", 9001]                ]            ]        ],        PRIMEM[\"Greenwich\", 0,            ANGLEUNIT[\"degree\", 0.0174532925199433,                ID[\"EPSG\", 9122]            ]        ]    ],    CONVERSION[\"Lambert Conic Conformal (2SP)\",        METHOD[\"Lambert Conic Conformal (2SP)\",            ID[\"EPSG\", 9802]        ],        PARAMETER[\"Latitude of false origin\", 55.5,            ANGLEUNIT[\"degree\", 0.0174532925199433,                ID[\"EPSG\", 8821]            ]        ],        PARAMETER[\"Longitude of false origin\", -8,            ANGLEUNIT[\"degree\", 0.0174532925199433,                ID[\"EPSG\", 8822]            ]        ],        PARAMETER[\"Latitude of 1st standard parallel\", 55.5,            ANGLEUNIT[\"degree\", 0.0174532925199433,                ID[\"EPSG\", 8823]            ]        ],        PARAMETER[\"Latitude of 2nd standard parallel\", 55.5,            ANGLEUNIT[\"degree\", 0.0174532925199433,                ID[\"EPSG\", 8824]            ]        ],        PARAMETER[\"Easting at false origin\", 0,            LENGTHUNIT[\"metre\", 1],            ID[\"EPSG\", 8826]        ],        PARAMETER[\"Northing at false origin\", 0,            LENGTHUNIT[\"metre\", 1],            ID[\"EPSG\", 8827]        ]    ],    CS[Cartesian, 2],    AXIS[\"(E)\", east,        ORDER[1],        LENGTHUNIT[\"Metre\", 1]    ],    AXIS[\"(N)\", north,        ORDER[2],        LENGTHUNIT[\"Metre\", 1]    ],    USAGE[        AREA[\"Denmark and surrounding regions\"],        BBOX[37, -43, 70, 40],        SCOPE[\"DINI Harmonie forecast projection\"]    ]]"
+    },
+    "sizes": {
+      "pressure": 14,
+      "x": 1906,
+      "y": 1606
+    }
+  },
+  "single_levels": {
+    "coords": {
+      "lat": {
+        "dims": [
+          "y",
+          "x"
+        ],
+        "dtype": "float64"
+      },
+      "level": {
+        "dims": [],
+        "dtype": "int64"
+      },
+      "lon": {
+        "dims": [
+          "y",
+          "x"
+        ],
+        "dtype": "float64"
+      },
+      "time": {
+        "dims": [
+          "time"
+        ],
+        "dtype": "datetime64[ns]"
+      },
+      "x": {
+        "dims": [
+          "x"
+        ],
+        "dtype": "float64"
+      },
+      "y": {
+        "dims": [
+          "y"
+        ],
+        "dtype": "float64"
+      }
+    },
+    "data_vars": {
+      "cape_column": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": null,
+        "units": "J kg**-1"
+      },
+      "dini_projection": {
+        "dims": [],
+        "dtype": "float64",
+        "standard_name": null,
+        "units": null
+      },
+      "hcc": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": null,
+        "units": "%"
+      },
+      "lcc": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": null,
+        "units": "%"
+      },
+      "lsm": {
+        "dims": [
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": null,
+        "units": "0-1"
+      },
+      "lwavr0m": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "surface_net_downward_longwave_flux",
+        "units": "W m-2"
+      },
+      "lwavr_accum0m": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": null,
+        "units": "J m-2"
+      },
+      "mcc": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": null,
+        "units": "%"
+      },
+      "mld": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": null,
+        "units": "m"
+      },
+      "orography": {
+        "dims": [
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "surface_altitude",
+        "units": "m"
+      },
+      "pres0m": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": null,
+        "units": "Pa"
+      },
+      "pres_seasurface": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": null,
+        "units": "Pa"
+      },
+      "r2m": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "relative_humidity",
+        "units": "%"
+      },
+      "swavr0m": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "surface_downwelling_shortwave_flux",
+        "units": "W m-2"
+      },
+      "swavr_accum0m": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": null,
+        "units": "J m-2"
+      },
+      "t0m": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "air_temperature",
+        "units": "K"
+      },
+      "t2m": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "air_temperature",
+        "units": "K"
+      },
+      "u10m": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "eastward_wind",
+        "units": "m s**-1"
+      },
+      "v10m": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": "northward_wind",
+        "units": "m s**-1"
+      },
+      "vis0m": {
+        "dims": [
+          "time",
+          "y",
+          "x"
+        ],
+        "dtype": "float64",
+        "standard_name": null,
+        "units": "m"
+      }
+    },
+    "projections": {
+      "dini_projection": "PROJCRS[\"DMI HARMONIE DINI lambert projection\",    BASEGEOGCRS[\"DMI HARMONIE DINI lambert CRS\",        DATUM[\"DMI HARMONIE DINI lambert datum\",            ELLIPSOID[\"Sphere\", 6371229, 0,                LENGTHUNIT[\"metre\", 1,                    ID[\"EPSG\", 9001]                ]            ]        ],        PRIMEM[\"Greenwich\", 0,            ANGLEUNIT[\"degree\", 0.0174532925199433,                ID[\"EPSG\", 9122]            ]        ]    ],    CONVERSION[\"Lambert Conic Conformal (2SP)\",        METHOD[\"Lambert Conic Conformal (2SP)\",            ID[\"EPSG\", 9802]        ],        PARAMETER[\"Latitude of false origin\", 55.5,            ANGLEUNIT[\"degree\", 0.0174532925199433,                ID[\"EPSG\", 8821]            ]        ],        PARAMETER[\"Longitude of false origin\", -8,            ANGLEUNIT[\"degree\", 0.0174532925199433,                ID[\"EPSG\", 8822]            ]        ],        PARAMETER[\"Latitude of 1st standard parallel\", 55.5,            ANGLEUNIT[\"degree\", 0.0174532925199433,                ID[\"EPSG\", 8823]            ]        ],        PARAMETER[\"Latitude of 2nd standard parallel\", 55.5,            ANGLEUNIT[\"degree\", 0.0174532925199433,                ID[\"EPSG\", 8824]            ]        ],        PARAMETER[\"Easting at false origin\", 0,            LENGTHUNIT[\"metre\", 1],            ID[\"EPSG\", 8826]        ],        PARAMETER[\"Northing at false origin\", 0,            LENGTHUNIT[\"metre\", 1],            ID[\"EPSG\", 8827]        ]    ],    CS[Cartesian, 2],    AXIS[\"(E)\", east,        ORDER[1],        LENGTHUNIT[\"Metre\", 1]    ],    AXIS[\"(N)\", north,        ORDER[2],        LENGTHUNIT[\"Metre\", 1]    ],    USAGE[        AREA[\"Denmark and surrounding regions\"],        BBOX[37, -43, 70, 40],        SCOPE[\"DINI Harmonie forecast projection\"]    ]]"
+    },
+    "sizes": {
+      "x": 1906,
+      "y": 1606
+    }
+  }
+}
