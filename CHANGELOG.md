@@ -11,6 +11,8 @@ migration to run.
 
 ## [Unreleased]
 
+## [v0.1.3]
+
 ### Changed
 
 - Datasets are archived in the order `single_levels`, `height_levels`,
@@ -87,7 +89,8 @@ First release. Archive schema version: 1 (the output of the zarr creator
   [c00837d](https://github.com/leifdenby/nwp-analysis-archive/commit/c00837d)
   (pushed to `main` before PRs were required), @leifdenby
 
-[Unreleased]: https://github.com/leifdenby/nwp-analysis-archive/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/leifdenby/nwp-analysis-archive/compare/v0.1.3...HEAD
+[v0.1.3]: https://github.com/leifdenby/nwp-analysis-archive/compare/v0.1.2...v0.1.3
 [v0.1.2]: https://github.com/leifdenby/nwp-analysis-archive/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/leifdenby/nwp-analysis-archive/compare/v0.1.0...v0.1.1
 [v0.1.0]: https://github.com/leifdenby/nwp-analysis-archive/releases/tag/v0.1.0
