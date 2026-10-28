@@ -1,6 +1,6 @@
 [project]
 name = "nwp-analysis-archive"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Archive the analysis time step of NWP forecast zarrs into a separate bucket"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -23,8 +23,11 @@ dev = [
 ]
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
 
 [tool.hatch.build.targets.wheel]
 packages = ["nwp_analysis_archive"]

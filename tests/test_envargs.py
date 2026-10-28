@@ -60,3 +60,11 @@ def test_empty_variable_counts_as_unset() -> None:
         {**REQUIRED, "NWP_ARCHIVE_INTERVAL_HOURS": ""},
     )
     assert args.interval_hours == 3
+
+
+def test_version_is_exposed() -> None:
+    """The package exposes the version derived from the git tag."""
+    import nwp_analysis_archive
+
+    assert isinstance(nwp_analysis_archive.__version__, str)
+    assert nwp_analysis_archive.__version__ != ""

@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # all tags, for the version
       - uses: astral-sh/setup-uv@v5
       - name: Install dependencies
         run: uv sync --group dev

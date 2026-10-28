@@ -11,6 +11,14 @@ migration to run.
 
 ## [Unreleased]
 
+### Changed
+
+- The version is derived from the git tag (hatch-vcs) and exposed as
+  `nwp_analysis_archive.__version__`; it is logged at startup. The container
+  image gets it through the `VERSION` build argument.
+  [\#1](https://github.com/leifdenby/nwp-analysis-archive/pull/1),
+  @leifdenby
+
 ## [v0.1.1]
 
 ### Fixed
@@ -18,6 +26,10 @@ migration to run.
 - Logs did not show in `docker logs` because stdout was block-buffered when
   not attached to a terminal. The container now runs with `PYTHONUNBUFFERED=1`
   and the application logs to stderr.
+  [290299e](https://github.com/leifdenby/nwp-analysis-archive/commit/290299e)
+  (pushed to `main` before PRs were required), @leifdenby
+  [290299e](https://github.com/leifdenby/nwp-analysis-archive/commit/290299e)
+  (pushed to `main` before PRs were required), @leifdenby
 
 ## [v0.1.0]
 
@@ -45,6 +57,8 @@ First release. Archive schema version: 1 (the output of the zarr creator
   `python -m nwp_analysis_archive.reingest`.
 - Container image on GHCR (`ghcr.io/leifdenby/nwp-analysis-archive`), and
   pytest and pre-commit (ruff) workflows.
+  [c00837d](https://github.com/leifdenby/nwp-analysis-archive/commit/c00837d)
+  (pushed to `main` before PRs were required), @leifdenby
 
 [Unreleased]: https://github.com/leifdenby/nwp-analysis-archive/compare/v0.1.1...HEAD
 [v0.1.1]: https://github.com/leifdenby/nwp-analysis-archive/compare/v0.1.0...v0.1.1
