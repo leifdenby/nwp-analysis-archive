@@ -318,6 +318,12 @@ logged at INFO after every pass on A.
   which would make the lockstep rule easier to apply than a structural check.
 - Pruning A for finished blocks that are in B (undecided, see above).
 
+## Releases
+
+Changes per release, including any change of the targeted schema, are in
+[CHANGELOG.md](CHANGELOG.md). Update it with every release, and tag releases
+`v*` (a tag publishes the container image).
+
 ## Development
 
 ```bash
