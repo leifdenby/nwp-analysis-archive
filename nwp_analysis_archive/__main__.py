@@ -3,12 +3,11 @@
 import argparse
 import datetime
 import sys
-import time
 from collections.abc import Sequence
 
 from loguru import logger
 
-from . import __version__, envargs, storage
+from . import __version__, envargs, shutdown, storage
 from .scan import (
     DATASET_IDS,
     check_final_update_due,
@@ -187,7 +186,7 @@ def run_watch(args: argparse.Namespace) -> None:
         The parsed options.
     """
     last_b_date = None
-    while True:
+    while not shutdown.check_stop_requested():
         now = datetime.datetime.now(datetime.UTC)
         steps = ["a"]
         if check_final_update_due(now, last_b_date, args.final_update_time):
@@ -198,7 +197,8 @@ def run_watch(args: argparse.Namespace) -> None:
                 last_b_date = now.date()
         except Exception:
             logger.exception("Update pass failed, retrying next poll")
-        time.sleep(args.poll_minutes * 60)
+        shutdown.wait_for_stop(args.poll_minutes * 60)
+    logger.info("Stopped")
 
 
 def main(argv: Sequence[str] | None = None) -> None:
@@ -212,6 +212,7 @@ def main(argv: Sequence[str] | None = None) -> None:
     parser = build_parser()
     args, sources = envargs.parse_args(parser, ENV_PREFIX, argv)
     storage.set_profile(args.aws_profile)
+    shutdown.install_signal_handlers()
     logger.remove()
     logger.add(sys.stderr, level=args.log_level.upper())
     logger.info(f"nwp_analysis_archive {__version__}")

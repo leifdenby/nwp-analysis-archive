@@ -11,6 +11,24 @@ migration to run.
 
 ## [Unreleased]
 
+### Changed
+
+- Datasets are archived in the order `single_levels`, `height_levels`,
+  `pressure_levels` (smallest and most used first); the first backfill
+  therefore completes the small datasets before the large one.
+  [\#4](https://github.com/leifdenby/nwp-analysis-archive/pull/4),
+  @leifdenby
+
+### Fixed
+
+- SIGTERM and SIGINT now stop the update loops at the next safe point
+  (between cycles and datasets) instead of killing the process in the middle
+  of an append, which could leave an `analysis_time` entry without data. Use
+  `docker run --stop-timeout` generous enough for the longest write. Each
+  append now also logs its duration.
+  [\#4](https://github.com/leifdenby/nwp-analysis-archive/pull/4),
+  @leifdenby
+
 ### Added
 
 - README: how to read the publicly readable archive bucket anonymously, and a
