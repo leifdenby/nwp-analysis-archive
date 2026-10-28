@@ -6,6 +6,36 @@ forecast produced by
 in a separate location. It runs as a container next to the zarr creator and
 reads and writes zarr stores on S3 (or on paths such as a mounted bucket).
 
+> **Work in progress.** This is an experiment under active development and
+> should not be considered an actual archive. It is still backfilling for the
+> first time, the format and the S3 layout can change, archive B has not been
+> built yet, and nothing guarantees that data will be kept, complete or
+> correct. Do not rely on it.
+
+## Reading the archive
+
+The archive bucket `harmonie-zarr-archive` (AWS S3) is publicly readable, so
+no credentials are needed. To see what is in a dataset:
+
+```bash
+uvx --with s3fs zarrdump --storage-option anon=true \
+  s3://harmonie-zarr-archive/dini/staging/pressure_levels.zarr
+```
+
+`anon=true` is needed on a machine without AWS credentials. The datasets are
+`pressure_levels`, `height_levels` and `single_levels`, under
+`dini/staging/` (archive A) and `dini/final/` (archive B, once built). To open
+one in Python:
+
+```python
+import xarray as xr
+
+ds = xr.open_zarr(
+    "s3://harmonie-zarr-archive/dini/staging/pressure_levels.zarr",
+    storage_options={"anon": True},
+)
+```
+
 The archive comes in two forms, built from the same source:
 
 | | Archive A (staging) | Archive B (final) |

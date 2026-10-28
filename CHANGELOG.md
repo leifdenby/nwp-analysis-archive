@@ -11,6 +11,13 @@ migration to run.
 
 ## [Unreleased]
 
+### Added
+
+- README: how to read the publicly readable archive bucket anonymously, and a
+  notice that this is work in progress and not an actual archive.
+  [\#3](https://github.com/leifdenby/nwp-analysis-archive/pull/3),
+  @leifdenby
+
 ## [v0.1.2]
 
 ### Changed
