@@ -8,6 +8,7 @@ COPY nwp_analysis_archive ./nwp_analysis_archive
 RUN uv sync --frozen --no-dev
 
 ENV PATH="/app/.venv/bin:$PATH" \
-    NWP_ARCHIVE_WATCH=true
+    NWP_ARCHIVE_WATCH=true \
+    PYTHONUNBUFFERED=1
 
 ENTRYPOINT ["python", "-m", "nwp_analysis_archive"]

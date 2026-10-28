@@ -213,7 +213,7 @@ def main(argv: Sequence[str] | None = None) -> None:
     args, sources = envargs.parse_args(parser, ENV_PREFIX, argv)
     storage.set_profile(args.aws_profile)
     logger.remove()
-    logger.add(lambda m: print(m, end=""), level=args.log_level.upper())
+    logger.add(sys.stderr, level=args.log_level.upper())
     for line in envargs.build_config_lines(parser, args, sources, ENV_PREFIX):
         logger.info(line)
     if args.watch:
