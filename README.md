@@ -326,6 +326,10 @@ Changes per release, including any change of the targeted schema, are in
 
 ## Development
 
+Work on a branch and open a PR; never push to `main`. Merge when the pytest
+and pre-commit workflows pass, then tag the release on `main`. The version
+comes from the git tag (`nwp_analysis_archive.__version__`).
+
 ```bash
 uv sync --group dev
 uv run pytest

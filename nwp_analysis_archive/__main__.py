@@ -8,7 +8,7 @@ from collections.abc import Sequence
 
 from loguru import logger
 
-from . import envargs, storage
+from . import __version__, envargs, storage
 from .scan import (
     DATASET_IDS,
     check_final_update_due,
@@ -214,6 +214,7 @@ def main(argv: Sequence[str] | None = None) -> None:
     storage.set_profile(args.aws_profile)
     logger.remove()
     logger.add(sys.stderr, level=args.log_level.upper())
+    logger.info(f"nwp_analysis_archive {__version__}")
     for line in envargs.build_config_lines(parser, args, sources, ENV_PREFIX):
         logger.info(line)
     if args.watch:

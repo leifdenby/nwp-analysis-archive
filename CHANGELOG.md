@@ -11,6 +11,12 @@ migration to run.
 
 ## [Unreleased]
 
+### Changed
+
+- The version is derived from the git tag (hatch-vcs) and exposed as
+  `nwp_analysis_archive.__version__`; it is logged at startup. The container
+  image gets it through the `VERSION` build argument.
+
 ## [v0.1.1]
 
 ### Fixed

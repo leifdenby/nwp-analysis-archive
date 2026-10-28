@@ -1037,7 +1037,6 @@ wheels = [
 
 [[package]]
 name = "nwp-analysis-archive"
-version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "dask" },
